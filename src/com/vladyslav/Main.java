@@ -1,22 +1,34 @@
 package com.vladyslav;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class Main {
 
     public static void main(String[] args) {
         Solution sol = new Solution();
-        int[] myResultSet = {2,7,11,15};
-        System.out.println(Arrays.toString(sol.twoSum(myResultSet, 18)));
+        int[] myResultSet = {4,1,2,1,2};
+        System.out.println(sol.singleNumber(myResultSet));
 
     }
 }
 
 class Solution {
-    
+
+   /* Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+    You must implement a solution with a linear runtime complexity and use only constant extra space.*/
+    public int singleNumber(int[] nums) {  // 2, 2, 3
+        Set<Integer> counterMap = new HashSet<>();
+        for (int num : nums) {
+            if (counterMap.contains(num)) {
+                counterMap.remove(num);
+            } else {
+                counterMap.add(num);
+            }
+        }
+        return new ArrayList<Integer>(counterMap).get(0);
+    }
+
     /*Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
 
     You may assume that each input would have exactly one solution, and you may not use the same element twice.
